@@ -14,13 +14,17 @@ class TeamSeason:
         return points_for_exponent / (points_for_exponent + self.points_against ** exponent)
 
     def get_actual_expected_difference(self, exponent):
-        return self.get_winning_percentage - self.get_expected_percentage(exponent)
+        return self.get_winning_percentage() - self.get_expected_percentage(exponent)
 
 class Team:
     def __init__(self, id, abbrev):
         self.id = id
         self.abbrev = abbrev
         self.seasons = {}
+
+    def get_sorted_difference_list(self, exponent):
+        diff_dict = {int(season): team_season.get_actual_expected_difference(exponent) for season, team_season in self.seasons.items()}
+        return sorted(diff_dict.items())
 
     def add_game(self, game_dict):
         season_str = game_dict['SEASON']
