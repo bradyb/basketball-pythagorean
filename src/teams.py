@@ -16,6 +16,9 @@ class TeamSeason:
     def get_actual_expected_difference(self, exponent):
         return self.get_winning_percentage() - self.get_expected_percentage(exponent)
 
+    def get_abs_difference(self, exponent):
+        return abs(self.get_winning_percentage() - self.get_expected_percentage(exponent))
+
 class Team:
     def __init__(self, id, abbrev):
         self.id = id
