@@ -10,9 +10,9 @@ class TeamSeason:
         return self.wins / self.total_games
 
     def get_expected_percentage(self, exponent):
-        points_for_exponent = self.points_for ** exponent
+        points_for_exponent = self.points_for**exponent
         return points_for_exponent / (
-            points_for_exponent + self.points_against ** exponent
+            points_for_exponent + self.points_against**exponent
         )
 
     def get_actual_expected_difference(self, exponent):
@@ -22,6 +22,11 @@ class TeamSeason:
         return abs(
             self.get_winning_percentage() - self.get_expected_percentage(exponent)
         )
+
+    def get_difference_squared(self, exponent):
+        return (
+            self.get_winning_percentage() - self.get_expected_percentage(exponent)
+        ) ** 2
 
 
 class Team:
